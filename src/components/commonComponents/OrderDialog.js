@@ -11,6 +11,7 @@ import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 import italy from "../../assets/italy.svg";
 import german from "../../assets/german.svg";
+import uk from "../../assets/uk.svg";
 
 const useStyles = makeStyles((theme) => ({
   flagButton: {
@@ -29,9 +30,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function OrderDialog({ setDialogOpen }) {
+export default function OrderDialog({ setDialogOpen, search, setSearch }) {
   const classes = useStyles();
   const theme = useTheme();
+
+  const flags = [
+    { name: "italian", image: italy, alt: "italian flag" },
+    { name: "german", image: german, alt: "german flag" },
+    { name: "english", image: uk, alt: "english flag" },
+  ];
 
   return (
     <DialogContent>
@@ -39,7 +46,10 @@ export default function OrderDialog({ setDialogOpen }) {
         <Grid item sm container direction="row">
           <Grid item>
             <IconButton
-              onClick={() => setDialogOpen(false)}
+              onClick={() => {
+                setDialogOpen(false);
+                setSearch("");
+              }}
               disableRipple
               className={classes.iconButton}
             >
@@ -51,23 +61,26 @@ export default function OrderDialog({ setDialogOpen }) {
             </IconButton>
           </Grid>
           <Grid item sm container direction="row" justifyContent="flex-end">
-            <Grid item>
-              <IconButton className={classes.flagButton} disableRipple>
-                <img src={italy} alt="italian flag" className={classes.flag} />
-              </IconButton>
-            </Grid>
-            <Grid item>
-              <IconButton className={classes.flagButton} disableRipple>
-                <img src={german} alt="german flag" className={classes.flag} />
-              </IconButton>
-            </Grid>
+            {flags.map((flag) => (
+              <Grid item>
+                <IconButton className={classes.flagButton} disableRipple>
+                  <img
+                    src={flag.image}
+                    alt={flag.alt}
+                    className={classes.flag}
+                  />
+                </IconButton>
+              </Grid>
+            ))}
           </Grid>
         </Grid>
-
         <Grid item align="center">
           <Typography variant="h4" paragraph color="secondary">
             Here's your order!
           </Typography>
+        </Grid>
+        <Grid item>
+          <Typography>Search: {search}</Typography>
         </Grid>
         <Grid item>
           <Button onClick={() => setDialogOpen(false)}>close</Button>

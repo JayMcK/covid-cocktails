@@ -29,20 +29,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RandomSelector() {
+export default function RandomSelector({ setSearch, setDialogOpen }) {
   const classes = useStyles();
   const theme = useTheme();
   return (
-    <Grid
-      item
-    >
+    <Grid item>
       <Grid
         container
         alignItems="center"
         direction="column"
         className={classes.selectorContainer}
       >
-        <Grid item container component={Button} className={classes.button}>
+        <Grid
+          item
+          container
+          component={Button}
+          className={classes.button}
+          onClick={() => {
+            setSearch("random");
+            setDialogOpen(true);
+          }}
+        >
           <Grid item>
             <Typography
               variant="h3"

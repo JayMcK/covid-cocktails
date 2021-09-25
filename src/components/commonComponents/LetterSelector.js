@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LetterSelector() {
+export default function LetterSelector({ setSearch, setDialogOpen }) {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -64,7 +64,7 @@ export default function LetterSelector() {
   ];
 
   return (
-    <Grid item >
+    <Grid item>
       <Grid
         container
         alignItems="center"
@@ -76,8 +76,16 @@ export default function LetterSelector() {
         </Grid>
         <Grid container justifyContent="center">
           {letters.map((letter) => (
-            <Grid item>
-              <Button className={classes.button}>{letter}</Button>
+            <Grid item key={letter}>
+              <Button
+                onClick={() => {
+                  setSearch(letter);
+                  setDialogOpen(true);
+                }}
+                className={classes.button}
+              >
+                {letter}
+              </Button>
             </Grid>
           ))}
         </Grid>

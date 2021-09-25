@@ -38,6 +38,7 @@ export default function Home() {
   const classes = useStyles();
   const theme = useTheme();
 
+  const [search, setSearch] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
@@ -83,8 +84,16 @@ export default function Home() {
               justifyContent="space-around"
               style={{ marginTop: "5em" }}
             >
-              <LetterSelector />
-              <RandomSelector />
+              <LetterSelector
+                setDialogOpen={setDialogOpen}
+                search={search}
+                setSearch={setSearch}
+              />
+              <RandomSelector
+                setDialogOpen={setDialogOpen}
+                search={search}
+                setSearch={setSearch}
+              />
             </Grid>
             <Grid
               item
@@ -94,7 +103,15 @@ export default function Home() {
               justifyContent="center"
             >
               <Grid item>
-                <TextField id="name" label="Cocktail Name" />
+                <TextField
+                  id="name"
+                  value={search}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                    console.log(search);
+                  }}
+                  label="Cocktail Name"
+                />
               </Grid>
               <Grid item>
                 <Button
@@ -116,7 +133,11 @@ export default function Home() {
             open={dialogOpen}
             onClose={() => setDialogOpen(false)}
           >
-            <OrderDialog setDialogOpen={setDialogOpen} />
+            <OrderDialog
+              search={search}
+              setSearch={setSearch}
+              setDialogOpen={setDialogOpen}
+            />
           </Dialog>
         </Grid>
       </Grid>
