@@ -8,7 +8,8 @@ const useStyles = makeStyles((theme) => ({
   selectorContainer: {
     borderRadius: 50,
     backgroundColor: theme.palette.common.blue,
-    maxWidth: "20em",
+    maxWidth: "30em",
+    maxHeight: "20em",
     paddingTop: "0.5em",
     paddingBottom: "0.5em",
   },
@@ -63,20 +64,23 @@ export default function LetterSelector() {
   ];
 
   return (
-    <Grid item style={{ marginTop: "5em", marginBottom: "5em" }}>
+    <Grid item >
       <Grid
         container
-        justifyContent="center"
+        alignItems="center"
+        direction="column"
         className={classes.selectorContainer}
       >
         <Grid item>
           <Typography variant="h3">First Letter of Cocktail’s Name</Typography>
         </Grid>
-        {letters.map((letter) => (
-          <Grid item>
-            <Button className={classes.button}>{letter}</Button>
-          </Grid>
-        ))}
+        <Grid container justifyContent="center">
+          {letters.map((letter) => (
+            <Grid item>
+              <Button className={classes.button}>{letter}</Button>
+            </Grid>
+          ))}
+        </Grid>
       </Grid>
     </Grid>
   );

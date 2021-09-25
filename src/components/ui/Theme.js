@@ -39,10 +39,46 @@ export default createTheme({
       fontSize: "2rem",
       color: ccGold,
     },
+    h4: {
+      fontFamily: "Josefin Sans",
+      lineHeight: 1.5,
+      fontSize: "2.5rem",
+      color: ccBlue,
+    },
     subtitle1: {
       fontFamily: "Josefin Sans",
       lineHeight: 1.5,
       fontSize: "1.5rem",
+    },
+  },
+  overrides: {
+    MuiInputLabel: {
+      root: {
+        color: ccBlue,
+        fontSize: "1.5rem",
+        fontFamily: "Italianno",
+      },
+    },
+    MuiInput: {
+      root: {
+        color: ccBlue,
+        fontWeight: 300,
+      },
+      underline: {
+        "&:before": {
+          borderBottom: `2px solid ${ccGold}`,
+        },
+        "&:hover:not($disabled):not($focused):not($error):before": {
+          borderBottom: `2px solid ${ccBlue}`,
+        },
+      },
+    },
+    MuiInputBase: {
+      input: {
+        fontFamily: "Josefin Sans",
+        fontWeight: "bold",
+        fontSize: "1.5rem",
+      },
     },
   },
 });

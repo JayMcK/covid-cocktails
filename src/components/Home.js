@@ -1,12 +1,17 @@
-import react from "react";
+import react, { useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import Divider from "@material-ui/core/Divider";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
 
 import heroBackground from "../assets/heroBackground.png";
 
-import LetterSelector from  './commonComponents/LetterSelector';
+import LetterSelector from "./commonComponents/LetterSelector";
+import RandomSelector from "./commonComponents/RandomSelector";
+import OrderDialog from "./commonComponents/OrderDialog";
 
 const useStyles = makeStyles((theme) => ({
   heroBackground: {
@@ -17,11 +22,23 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
   },
+  goButton: {
+    color: theme.palette.common.white,
+    height: "3.5em",
+    marginLeft: "2em",
+    "&:hover": {
+      backgroundColor: theme.palette.common.gold,
+    },
+    fontSize: "1em",
+    fontWeight: "bold",
+  },
 }));
 
 export default function Home() {
   const classes = useStyles();
   const theme = useTheme();
+
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
     <Grid item>
@@ -58,12 +75,49 @@ export default function Home() {
                 Search by First Letter of Cocktails Name, Pick a Random Cocktail
                 to try or Search by Cocktail Name.
               </Typography>
-              <Typography variant="subtitle1">
-                Scroll down to see your order!
-              </Typography>
             </Grid>
-            <LetterSelector />
+            <Grid
+              container
+              direction="row"
+              alignItems="center"
+              justifyContent="space-around"
+              style={{ marginTop: "5em" }}
+            >
+              <LetterSelector />
+              <RandomSelector />
+            </Grid>
+            <Grid
+              item
+              container
+              direction="row"
+              style={{ marginTop: "5em" }}
+              justifyContent="center"
+            >
+              <Grid item>
+                <TextField id="name" label="Cocktail Name" />
+              </Grid>
+              <Grid item>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.goButton}
+                  onClick={() => setDialogOpen(true)}
+                >
+                  go
+                </Button>
+              </Grid>
+            </Grid>
           </Grid>
+        </Grid>
+        <Grid item>
+          {/* ----- Results Block */}
+          <Dialog
+            fullScreen
+            open={dialogOpen}
+            onClose={() => setDialogOpen(false)}
+          >
+            <OrderDialog setDialogOpen={setDialogOpen} />
+          </Dialog>
         </Grid>
       </Grid>
     </Grid>
