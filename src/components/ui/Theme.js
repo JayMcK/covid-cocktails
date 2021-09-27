@@ -45,10 +45,21 @@ export default createTheme({
       fontSize: "2.5rem",
       color: ccBlue,
     },
+    h5: {
+      fontFamily: "Italianno",
+      lineHeight: 1.5,
+      fontSize: "4rem",
+      fontWeight: "bold",
+    },
     subtitle1: {
       fontFamily: "Josefin Sans",
       lineHeight: 1.5,
       fontSize: "1.5rem",
+    },
+    body1: {
+      fontFamily: "Josefin Sans",
+      lineHeight: 1.5,
+      fontSize: "1.25rem",
     },
   },
   overrides: {

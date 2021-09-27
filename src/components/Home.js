@@ -8,6 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 
 import heroBackground from "../assets/heroBackground.png";
+import logo from "../assets/logo.svg";
 
 import LetterSelector from "./commonComponents/LetterSelector";
 import RandomSelector from "./commonComponents/RandomSelector";
@@ -41,6 +42,14 @@ export default function Home() {
   const [search, setSearch] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
 
+  {
+    /* check what is in state. 
+  E.g if search.length === 1, this is first letter search, so do async/await axios call using first letter query string.
+    else if search === "random", this is a random search, so do async/await axios call using random query string.
+    else, this is something someone has typed. Therefore search using the cocktail name query string. This may return 0 results, so I need to ensure the user is given a message if no cocktails were found, and some guidance e.g. a few options they can try next time e.g. Sex on the Beach, Mojito etc. 
+  */
+  }
+
   return (
     <Grid item>
       <Grid container direction="column">
@@ -53,6 +62,9 @@ export default function Home() {
             justifyContent="center"
             className={classes.heroBackground}
           >
+            <Grid item>
+              <img src={logo} alt="logo" />
+            </Grid>
             <Grid item>
               <Typography variant="h1">Covid & Cocktails</Typography>
             </Grid>
@@ -118,7 +130,10 @@ export default function Home() {
                   variant="contained"
                   color="primary"
                   className={classes.goButton}
-                  onClick={() => setDialogOpen(true)}
+                  disabled={search.length === 0}
+                  onClick={() =>
+                    search.length !== 0 ? setDialogOpen(true) : null
+                  }
                 >
                   go
                 </Button>
