@@ -12,6 +12,15 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: "20em",
     paddingTop: "0.5em",
     paddingBottom: "0.5em",
+    marginBottom: "5em",
+    [theme.breakpoints.down("sm")]: {
+      maxWidth: "20em",
+      maxHeight: "30em",
+    },
+    [theme.breakpoints.down("xs")]: {
+      maxWidth: "17em",
+      maxHeight: "35em",
+    },
   },
   button: {
     borderRadius: 50,
@@ -71,7 +80,7 @@ export default function LetterSelector({ setSearch, setDialogOpen }) {
         direction="column"
         className={classes.selectorContainer}
       >
-        <Grid item>
+        <Grid item align="center">
           <Typography variant="h3">First Letter of Cocktail’s Name</Typography>
         </Grid>
         <Grid container justifyContent="center">

@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "transparent",
     },
     padding: 0,
-    marginLeft: "0.5em",
   },
   appbar: {
     boxShadow: "none",
@@ -91,7 +90,7 @@ export default function OrderDialog({ setDialogOpen, search, setSearch }) {
               justifyContent="space-between"
               alignItems="center"
             >
-              <Grid item sm>
+              <Grid item xs={3}>
                 <IconButton
                   onClick={() => {
                     setDialogOpen(false);
@@ -107,7 +106,13 @@ export default function OrderDialog({ setDialogOpen, search, setSearch }) {
                   />
                 </IconButton>
               </Grid>
-              <Grid item sm container direction="row" justifyContent="flex-end">
+              <Grid
+                item
+                xs={9}
+                container
+                direction="row"
+                justifyContent="flex-end"
+              >
                 {flags.map((flag) => (
                   <Grid item key={flag.name}>
                     <IconButton

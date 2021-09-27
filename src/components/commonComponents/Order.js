@@ -1,10 +1,13 @@
 import React, { useEffect, useState, Fragment } from "react";
 import axios from "axios";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useMediaQuery } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
+import Backdrop from "@material-ui/core/Backdrop";
+
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Avatar from "@material-ui/core/Avatar";
 
@@ -14,6 +17,11 @@ const useStyles = makeStyles((theme) => ({
     width: "15em",
     boxShadow: theme.shadows[5],
     border: `10px solid ${theme.palette.common.gold}`,
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "1em",
+      height: "12.5em",
+      width: "12.5em",
+    },
   },
   divider: {
     marginTop: "1em",
@@ -30,11 +38,17 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "1em",
     marginBottom: "1em",
   },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: "#fff",
+  },
 }));
 
 export default function Order({ search, language }) {
   const classes = useStyles();
   const theme = useTheme();
+
+  const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleQuery = () => {
     if (search.length === 1) {
@@ -104,11 +118,9 @@ export default function Order({ search, language }) {
     <Grid item>
       <Grid container direction="column">
         <Grid item>
-          {isLoading ? (
-            <Grid item align="center" className={classes.circularProgress}>
-              <CircularProgress color="secondary" size="10em" />
-            </Grid>
-          ) : null}
+          <Backdrop open={isLoading} className={classes.backdrop}>
+            <CircularProgress color="inherit" size={100} />
+          </Backdrop>
           <Grid item>
             <Divider variant="middle" className={classes.divider} />
           </Grid>
@@ -117,7 +129,7 @@ export default function Order({ search, language }) {
                 <Fragment key={drink.strDrink}>
                   <Grid
                     container
-                    direction="row"
+                    direction={matchesSM ? "column" : "row"}
                     key={drink.idDrink}
                     alignItems="center"
                     justifyContent="space-around"
