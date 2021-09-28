@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -58,9 +58,9 @@ const useStyles = makeStyles((theme) => ({
     },
     fontFamily: "Josefin Sans",
     borderRadius: 0,
-    fontSize: "2rem",
-    width: 180,
-    height: 60,
+    fontSize: "1.25rem",
+    width: 120,
+    height: 40,
     marginTop: "1em",
     marginBottom: "1em",
   },
@@ -68,7 +68,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function OrderDialog({ setDialogOpen, search, setSearch }) {
   const classes = useStyles();
-  const theme = useTheme();
 
   const [language, setLanguage] = useState("english");
 
@@ -112,6 +111,7 @@ export default function OrderDialog({ setDialogOpen, search, setSearch }) {
                 container
                 direction="row"
                 justifyContent="flex-end"
+                style={{ paddingRight: "0.5em" }}
               >
                 {flags.map((flag) => (
                   <Grid item key={flag.name}>

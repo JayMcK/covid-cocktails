@@ -4,7 +4,6 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { useMediaQuery } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 import Backdrop from "@material-ui/core/Backdrop";
 
@@ -60,7 +59,7 @@ export default function Order({ search, language }) {
     }
   };
 
-  const [drinks, setDrinks] = useState([]);
+  const [drinks, setDrinks] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const query = handleQuery(search);
@@ -72,7 +71,6 @@ export default function Order({ search, language }) {
       .then((res) => {
         //handle success
         setDrinks(res.data.drinks);
-        console.log(res.data.drinks);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -83,10 +81,11 @@ export default function Order({ search, language }) {
   }, [query]);
 
   const searchAgain = (
-    <Grid item>
+    <Grid item align="center">
       <Typography>
         Sorry, no search results were found. Please try again
       </Typography>
+      <Typography>Search ideas: Mojito, Paloma, Thriller, etc!</Typography>
     </Grid>
   );
 
@@ -104,7 +103,6 @@ export default function Order({ search, language }) {
       if (drink[ingredient] === "") break;
       let i = `${drink[ingredient]}`.trim();
       let m = `${drink[measure]}`.trim();
-      console.log(i, m);
       array.push(`${m === "null" || m === null ? "" : m} ${i ? i : ""}`);
     }
     return array.map((item, index) => (

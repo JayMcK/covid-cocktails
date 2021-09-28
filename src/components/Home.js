@@ -1,9 +1,8 @@
-import react, { useState } from "react";
+import { useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 
@@ -67,14 +66,6 @@ export default function Home() {
 
   const [search, setSearch] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
-
-  {
-    /* check what is in state. 
-  E.g if search.length === 1, this is first letter search, so do async/await axios call using first letter query string.
-    else if search === "random", this is a random search, so do async/await axios call using random query string.
-    else, this is something someone has typed. Therefore search using the cocktail name query string. This may return 0 results, so I need to ensure the user is given a message if no cocktails were found, and some guidance e.g. a few options they can try next time e.g. Sex on the Beach, Mojito etc. 
-  */
-  }
 
   return (
     <Grid item>
@@ -163,7 +154,6 @@ export default function Home() {
                   value={search}
                   onChange={(e) => {
                     setSearch(e.target.value);
-                    console.log(search);
                   }}
                   label="Cocktail Name"
                 />
