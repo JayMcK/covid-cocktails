@@ -4,7 +4,7 @@ Please visit the live site here: https://crib-cocktails.vercel.app/
 
 ## Introduction
 
-Crib Cocktails is a Single Page Web Application, designed using Figma. Indigo is a cocktail recipe information website, developed using thecocktaildb's API; allowing the user to search for cocktail recipe's by first letter, name or random pick. Material UI was used extensively throughout this project.
+Crib Cocktails is a Single Page Web Application, designed using Figma. Indigo is a cocktail recipe information website, developed using thecocktaildb's REST API; allowing the user to search for cocktail recipe's by first letter, name or random pick. Material UI was used extensively throughout this project.
 
 ## Technologies
 
