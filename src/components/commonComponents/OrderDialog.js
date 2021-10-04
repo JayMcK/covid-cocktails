@@ -151,7 +151,7 @@ export default function OrderDialog({ setDialogOpen, search, setSearch }) {
             Here's your order!
           </Typography>
         </Grid>
-        <Order search={search} language={language} />
+        <Order  search={search} language={language} />
         <Grid item align="center">
           <Button
             variant="contained"
